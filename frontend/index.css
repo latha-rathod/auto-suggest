@@ -10,8 +10,21 @@ h1{
 
 }
 #home-intro:hover{
-    background-color:burlywood;
+    background-color:rgb(192, 133, 56);
 }
 #p2{
     color: blue;
+}
+#nav{
+    text-align: center;
+    background: brown;
+    height: 25px;
+    padding-top: 5px;
+    margin-bottom: 5px;
+}
+#nav a{
+    margin: opx 5px;
+    text-decoration: none;
+    color:white;
+
 }
