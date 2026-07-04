@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div id="nav">
-        <a href="/"> Home </a>
-        <a href="https://github.com" target="_blank"> Github </a>
-        <a href="https://leetcode.com"> Leetcode </a>
-        <a href="./pages/autosuggest.html"> Auto Suggest </a>
+
+  <div id="nav">
+    <a href="/"> Home </a>
+    <a href="https://github.com" target="_blank"> Github </a>
+    <a href="https://leetcode.com" target="_blank"> Leetcode </a>
+    <a href="/gitpulse.html" target="_blank"> Gitpulse </a>
+    <a href="/askgemini.html" target="_blank"> Ask Gemini </a>
+    <a href="/leetcode-stats.html" target="_blank"> Leetcode Stats </a>
+    <a href="/codeforces-insights.html" target="_blank"> Codeforces Insights </a>
+    <a href="./pages/autosuggest.html" target="_blank"> Auto suggest </a>
+  </div>
+  <div id="home-intro">
+    <h1> Home Page</h1>
+    <p id="p1"> Operations on user card</p>
+    <p id="p2"> Toggle, Get random user and much more</p>
+  </div>
+
+  <div id="card">
+    <div id="card-img">
+      <img id="img" src="./images/jane.png" alt="no img found">
     </div>
-    <div id="home-intro">
-        <h1>Home page</h1>
-        <p id="p1">Operations on user card</p>
-        <p id="p2">Toggle, Get random user and much more</p>
+
+    <div id="action">
+      <h2 id="card-name"> Jane Doe </h1>
+      <p id="card-gender"> Female </p>
+      <button onclick="toggle()" id="card-toggle"> Toggle </button>
+      <button onclick="getRandomUser()">Get Random
     </div>
-    <div id="card">
-        <div id="card-img">
-            <img id="img" src="./images/jane.png" alt="no img found">
-        </div>
-        <div id="action">
-            <h1 id="card-name"> Jane Doe </h1>
-            <p id="card-gender"> Female </p>
-            <button id=""toggle-btn onclick="toggle()"> Toggle </button>
-            <button onclick="getRandomUser()">Random user</button>
-        </div>
     </div>
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
