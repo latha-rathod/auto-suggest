@@ -1,11 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Being Infinity</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#fff;
+}
+
+/* Top Bar */
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
+
+.gear{
+    font-size:28px;
+}
+
+.status{
+    font-size:18px;
+}
+
+/* Main */
+.container{
+    text-align:center;
+    margin-top:60px;
+}
+
+h1{
+    font-size:60px;
+}
+
+.being{
+    color:#2196F3;
+}
+
+.infinity{
+    color:#111;
+}
+
+p{
+    color:gray;
+    margin-top:15px;
+    font-size:20px;
+}
+
+/* Search */
+.search-container{
+    width:600px;
+    margin:35px auto;
+}
+
+.search{
+    display:flex;
+    align-items:center;
+    border:2px solid rgb(9, 12, 231);
+    border-radius:30px;
+    padding:12px 18px;
+}
+
+.search input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:18px;
+    margin-left:10px;
+}
+
+/* Suggestions */
+.suggestion-box{
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    text-align:left;
+    max-height:250px;
+    overflow-y:auto;
+}
+
+.suggestion-item{
+    padding:10px;
+    cursor:pointer;
+    border-bottom:1px solid #eee;
+}
+
+.suggestion-item:hover{
+    background:#f2f2f2;
+}
+</style>
+
 </head>
+
 <body>
-    <h1>Auto suggest page</h1>
+
+<div class="top">
+    <div class="gear">⚙️</div>
+
+    <div class="status">
+        ● Online &nbsp; | &nbsp; ⏱️ 0 ms
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>
+        <span class="being">Being</span>
+        <span class="infinity">Infinity</span>
+    </h1>
+
+    <p>One million phrases. Four algorithms. Prefix-based Auto Suggest.</p>
+
+    <div class="search-container">
+
+        <div class="search">
+            🔍
+            <input
+                type="text"
+                id="search"
+                placeholder="Start typing to search..."
+                autocomplete="off">
+        </div>
+
+        <div class="suggestion-box" id="suggestionBox"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+const search = document.getElementById("search");
+const suggestionBox = document.getElementById("suggestionBox");
+
+search.addEventListener("input", async function(){
+
+    const q = search.value.trim();
+
+    if(q === ""){
+        suggestionBox.innerHTML = "";
+        return;
+    }
+
+    try{
+
+        const response = await fetch(
+            `https://autosuggest-backend.onrender.com/api/autosuggest?q=${q}&algorithm=brute&limit=10&weighted=false`
+        );
+
+        const data = await response.json();
+
+        suggestionBox.innerHTML = "";
+
+        data.results.forEach(function(item){
+
+            const div = document.createElement("div");
+
+            div.className = "suggestion-item";
+            div.innerText = item.text;
+
+            div.onclick = function(){
+                search.value = item.text;
+                suggestionBox.innerHTML = "";
+            };
+
+            suggestionBox.appendChild(div);
+
+        });
+
+    }
+    catch(error){
+        suggestionBox.innerHTML =
+        "<div class='suggestion-item'>Error loading suggestions</div>";
+
+        console.log(error);
+    }
+
+});
+
+</script>
+
 </body>
 </html>
